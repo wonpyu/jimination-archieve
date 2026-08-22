@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="https://lov3-lgtm.github.io/jimination-assets/icon/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="https://lov3-lgtm.github.io/jimination-assets/icon/apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JIMINATION">
+<title>Jimin Fansign 2014 | Photo Archive</title>
+
+<meta name="description" content="A photo archive of Jimin's fansign and fan meeting events throughout 2014.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://jimination.com/navigation/vault/fansign2014.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jimin Fansign 2014 | Photo Archive">
+<meta property="og:description" content="A photo archive of Jimin's fansign and fan meeting events throughout 2014.">
+<meta property="og:url" content="https://jimination.com/navigation/vault/fansign2014.html">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/geondae-140226/geondae-140226-01.jpg">
+
+<link rel="stylesheet" href="memories.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<a href="https://jimination.com/navigation/vault/archives" class="back-btn-fixed" aria-label="Back to Jimination">&#8592; Jimination</a>
+
+<div class="paper">
+
+    <header class="archive-header">
+        <p class="archive-label">Jimin Fansign 2014</p>
+        <div class="archive-divider"></div>
+        <p class="archive-count" id="archive-count"></p>
+    </header>
+
+    <main id="archive-main"></main>
+
+</div>
+
+<!-- ================= LIGHTBOX ================= -->
+<div class="lightbox" id="lightbox">
+    <div class="lightbox-figure" id="lightbox-figure">
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Sebelumnya">&#10094;</button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="">
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Berikutnya">&#10095;</button>
+        <button class="lightbox-close" id="lightbox-close" aria-label="Tutup">&#10005;</button>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+</div>
+
+<script>
+    // ============ DATABASE FOTO (dikelompokkan per event/tanggal) ============
+    // Foto di-host di GitHub (1013pjmo-art/archieve-photo) via jsDelivr CDN.
+    const memoriesGroups = [
+        {
+            title: "Singapore, December 12, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/singapore-141212/singapore-141212-01.jpg", alt: "Singapore 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/singapore-141212/singapore-141212-02.jpg", alt: "Singapore 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/singapore-141212/singapore-141212-03.jpg", alt: "Singapore 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/singapore-141212/singapore-141212-04.jpg", alt: "Singapore 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/singapore-141212/singapore-141212-05.jpg", alt: "Singapore 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/singapore-141212/singapore-141212-06.jpg", alt: "Singapore 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/singapore-141212/singapore-141212-07.jpg", alt: "Singapore 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/singapore-141212/singapore-141212-08.jpg", alt: "Singapore 08" },
+            ]
+        },
+        {
+            title: "CGV Daeyeon Busan, December 5, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cgv-daeyeon-busan-141205/cgv-daeyeon-busan-141205-01.jpg", alt: "CGV Daeyeon Busan 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cgv-daeyeon-busan-141205/cgv-daeyeon-busan-141205-02.jpg", alt: "CGV Daeyeon Busan 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cgv-daeyeon-busan-141205/cgv-daeyeon-busan-141205-03.jpg", alt: "CGV Daeyeon Busan 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cgv-daeyeon-busan-141205/cgv-daeyeon-busan-141205-04.jpg", alt: "CGV Daeyeon Busan 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cgv-daeyeon-busan-141205/cgv-daeyeon-busan-141205-05.jpg", alt: "CGV Daeyeon Busan 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cgv-daeyeon-busan-141205/cgv-daeyeon-busan-141205-06.jpg", alt: "CGV Daeyeon Busan 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cgv-daeyeon-busan-141205/cgv-daeyeon-busan-141205-07.jpg", alt: "CGV Daeyeon Busan 07" },
+            ]
+        },
+        {
+            title: "Gangnam, November 27, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gangnam-141127/gangnam-141127-01.jpg", alt: "Gangnam 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gangnam-141127/gangnam-141127-02.jpg", alt: "Gangnam 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gangnam-141127/gangnam-141127-03.jpg", alt: "Gangnam 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gangnam-141127/gangnam-141127-04.jpg", alt: "Gangnam 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gangnam-141127/gangnam-141127-05.jpg", alt: "Gangnam 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gangnam-141127/gangnam-141127-06.jpg", alt: "Gangnam 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gangnam-141127/gangnam-141127-07.jpg", alt: "Gangnam 07" },
+            ]
+        },
+        {
+            title: "Myeongdong, November 25, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/myeongdong-141125/myeongdong-141125-01.jpg", alt: "Myeongdong 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/myeongdong-141125/myeongdong-141125-02.jpg", alt: "Myeongdong 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/myeongdong-141125/myeongdong-141125-03.jpg", alt: "Myeongdong 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/myeongdong-141125/myeongdong-141125-04.jpg", alt: "Myeongdong 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/myeongdong-141125/myeongdong-141125-05.jpg", alt: "Myeongdong 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/myeongdong-141125/myeongdong-141125-06.jpg", alt: "Myeongdong 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/myeongdong-141125/myeongdong-141125-07.jpg", alt: "Myeongdong 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/myeongdong-141125/myeongdong-141125-08.jpg", alt: "Myeongdong 08" },
+            ]
+        },
+        {
+            title: "Jamsil, November 19, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jamsil-141119/jamsil-141119-01.jpg", alt: "Jamsil 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jamsil-141119/jamsil-141119-02.jpg", alt: "Jamsil 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jamsil-141119/jamsil-141119-03.jpg", alt: "Jamsil 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jamsil-141119/jamsil-141119-04.jpg", alt: "Jamsil 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jamsil-141119/jamsil-141119-05.jpg", alt: "Jamsil 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jamsil-141119/jamsil-141119-06.jpg", alt: "Jamsil 06" },
+            ]
+        },
+        {
+            title: "Guro, November 10, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/guro-141110/guro-141110-01.jpg", alt: "Guro 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/guro-141110/guro-141110-02.jpg", alt: "Guro 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/guro-141110/guro-141110-03.jpg", alt: "Guro 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/guro-141110/guro-141110-04.jpg", alt: "Guro 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/guro-141110/guro-141110-05.jpg", alt: "Guro 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/guro-141110/guro-141110-06.jpg", alt: "Guro 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/guro-141110/guro-141110-07.jpg", alt: "Guro 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/guro-141110/guro-141110-08.jpg", alt: "Guro 08" },
+            ]
+        },
+        {
+            title: "Inkigayo, November 9, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-141109/inkigayo-141109-01.jpg", alt: "Inkigayo 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-141109/inkigayo-141109-02.jpg", alt: "Inkigayo 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-141109/inkigayo-141109-03.jpg", alt: "Inkigayo 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-141109/inkigayo-141109-04.jpg", alt: "Inkigayo 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-141109/inkigayo-141109-05.jpg", alt: "Inkigayo 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-141109/inkigayo-141109-06.jpg", alt: "Inkigayo 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-141109/inkigayo-141109-07.jpg", alt: "Inkigayo 07" },
+            ]
+        },
+        {
+            title: "Cheongyangni, November 6, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cheongyangni-141106/cheongyangni-141106-01.jpg", alt: "Cheongyangni 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cheongyangni-141106/cheongyangni-141106-02.jpg", alt: "Cheongyangni 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cheongyangni-141106/cheongyangni-141106-03.jpg", alt: "Cheongyangni 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cheongyangni-141106/cheongyangni-141106-04.jpg", alt: "Cheongyangni 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cheongyangni-141106/cheongyangni-141106-05.jpg", alt: "Cheongyangni 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cheongyangni-141106/cheongyangni-141106-06.jpg", alt: "Cheongyangni 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cheongyangni-141106/cheongyangni-141106-07.jpg", alt: "Cheongyangni 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cheongyangni-141106/cheongyangni-141106-08.jpg", alt: "Cheongyangni 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/cheongyangni-141106/cheongyangni-141106-09.jpg", alt: "Cheongyangni 09" },
+            ]
+        },
+        {
+            title: "Gimpo, November 3, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-141103/gimpo-141103-01.jpg", alt: "Gimpo 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-141103/gimpo-141103-02.jpg", alt: "Gimpo 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-141103/gimpo-141103-03.jpg", alt: "Gimpo 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-141103/gimpo-141103-04.jpg", alt: "Gimpo 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-141103/gimpo-141103-05.jpg", alt: "Gimpo 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-141103/gimpo-141103-06.jpg", alt: "Gimpo 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-141103/gimpo-141103-07.jpg", alt: "Gimpo 07" },
+            ]
+        },
+        {
+            title: "Mwave, October 23, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mwave-141023/mwave-141023-01.jpg", alt: "Mwave 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mwave-141023/mwave-141023-02.jpg", alt: "Mwave 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mwave-141023/mwave-141023-03.jpg", alt: "Mwave 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mwave-141023/mwave-141023-04.jpg", alt: "Mwave 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mwave-141023/mwave-141023-05.jpg", alt: "Mwave 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mwave-141023/mwave-141023-06.jpg", alt: "Mwave 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mwave-141023/mwave-141023-07.jpg", alt: "Mwave 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mwave-141023/mwave-141023-08.jpg", alt: "Mwave 08" },
+            ]
+        },
+        {
+            title: "China, October 5, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/china-141005/china-141005-01.jpg", alt: "China 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/china-141005/china-141005-02.jpg", alt: "China 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/china-141005/china-141005-03.jpg", alt: "China 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/china-141005/china-141005-04.jpg", alt: "China 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/china-141005/china-141005-05.jpg", alt: "China 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/china-141005/china-141005-06.jpg", alt: "China 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/china-141005/china-141005-07.jpg", alt: "China 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/china-141005/china-141005-08.jpg", alt: "China 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/china-141005/china-141005-09.jpg", alt: "China 09" },
+            ]
+        },
+        {
+            title: "Daegu, September 29, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140929/daegu-140929-01.jpg", alt: "Daegu 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140929/daegu-140929-02.jpg", alt: "Daegu 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140929/daegu-140929-03.jpg", alt: "Daegu 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140929/daegu-140929-04.jpg", alt: "Daegu 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140929/daegu-140929-05.jpg", alt: "Daegu 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140929/daegu-140929-06.jpg", alt: "Daegu 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140929/daegu-140929-07.jpg", alt: "Daegu 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140929/daegu-140929-08.jpg", alt: "Daegu 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140929/daegu-140929-09.jpg", alt: "Daegu 09" },
+            ]
+        },
+        {
+            title: "Yongsan, September 22, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yongsan-140922/yongsan-140922-01.jpg", alt: "Yongsan 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yongsan-140922/yongsan-140922-02.jpg", alt: "Yongsan 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yongsan-140922/yongsan-140922-03.jpg", alt: "Yongsan 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yongsan-140922/yongsan-140922-04.jpg", alt: "Yongsan 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yongsan-140922/yongsan-140922-05.jpg", alt: "Yongsan 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yongsan-140922/yongsan-140922-06.jpg", alt: "Yongsan 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yongsan-140922/yongsan-140922-07.jpg", alt: "Yongsan 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yongsan-140922/yongsan-140922-08.jpg", alt: "Yongsan 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yongsan-140922/yongsan-140922-09.jpg", alt: "Yongsan 09" },
+            ]
+        },
+        {
+            title: "Mokdong, September 18, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mokdong-140918/mokdong-140918-01.jpg", alt: "Mokdong 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mokdong-140918/mokdong-140918-02.jpg", alt: "Mokdong 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mokdong-140918/mokdong-140918-03.jpg", alt: "Mokdong 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mokdong-140918/mokdong-140918-04.jpg", alt: "Mokdong 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mokdong-140918/mokdong-140918-05.jpg", alt: "Mokdong 05" },
+            ]
+        },
+        {
+            title: "Daegu, September 14, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140914/daegu-140914-01.jpg", alt: "Daegu 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140914/daegu-140914-02.jpg", alt: "Daegu 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140914/daegu-140914-03.jpg", alt: "Daegu 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140914/daegu-140914-04.jpg", alt: "Daegu 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140914/daegu-140914-05.jpg", alt: "Daegu 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140914/daegu-140914-06.jpg", alt: "Daegu 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-140914/daegu-140914-07.jpg", alt: "Daegu 07" },
+            ]
+        },
+        {
+            title: "KBS Music Bank, September 12, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/kbs-music-bank-140912/kbs-music-bank-140912-01.jpg", alt: "KBS Music Bank 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/kbs-music-bank-140912/kbs-music-bank-140912-02.jpg", alt: "KBS Music Bank 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/kbs-music-bank-140912/kbs-music-bank-140912-03.jpg", alt: "KBS Music Bank 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/kbs-music-bank-140912/kbs-music-bank-140912-04.jpg", alt: "KBS Music Bank 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/kbs-music-bank-140912/kbs-music-bank-140912-05.jpg", alt: "KBS Music Bank 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/kbs-music-bank-140912/kbs-music-bank-140912-06.jpg", alt: "KBS Music Bank 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/kbs-music-bank-140912/kbs-music-bank-140912-07.jpg", alt: "KBS Music Bank 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/kbs-music-bank-140912/kbs-music-bank-140912-08.jpg", alt: "KBS Music Bank 08" },
+            ]
+        },
+        {
+            title: "Sinchon, September 11, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/sinchon-140911/sinchon-140911-01.jpg", alt: "Sinchon 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/sinchon-140911/sinchon-140911-02.jpg", alt: "Sinchon 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/sinchon-140911/sinchon-140911-03.jpg", alt: "Sinchon 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/sinchon-140911/sinchon-140911-04.jpg", alt: "Sinchon 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/sinchon-140911/sinchon-140911-05.jpg", alt: "Sinchon 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/sinchon-140911/sinchon-140911-06.jpg", alt: "Sinchon 06" },
+            ]
+        },
+        {
+            title: "Jongro, September 7, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongro-140907/jongro-140907-01.jpg", alt: "Jongro 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongro-140907/jongro-140907-02.jpg", alt: "Jongro 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongro-140907/jongro-140907-03.jpg", alt: "Jongro 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongro-140907/jongro-140907-04.jpg", alt: "Jongro 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongro-140907/jongro-140907-05.jpg", alt: "Jongro 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongro-140907/jongro-140907-06.jpg", alt: "Jongro 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongro-140907/jongro-140907-07.jpg", alt: "Jongro 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongro-140907/jongro-140907-08.jpg", alt: "Jongro 08" },
+            ]
+        },
+        {
+            title: "Yeongdeungpo, September 6, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeongdeungpo-140906/yeongdeungpo-140906-01.jpg", alt: "Yeongdeungpo 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeongdeungpo-140906/yeongdeungpo-140906-02.jpg", alt: "Yeongdeungpo 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeongdeungpo-140906/yeongdeungpo-140906-03.jpg", alt: "Yeongdeungpo 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeongdeungpo-140906/yeongdeungpo-140906-04.jpg", alt: "Yeongdeungpo 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeongdeungpo-140906/yeongdeungpo-140906-05.jpg", alt: "Yeongdeungpo 05" },
+            ]
+        },
+        {
+            title: "Yeouido, September 5, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140905/yeouido-140905-01.jpg", alt: "Yeouido 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140905/yeouido-140905-02.jpg", alt: "Yeouido 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140905/yeouido-140905-03.jpg", alt: "Yeouido 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140905/yeouido-140905-04.jpg", alt: "Yeouido 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140905/yeouido-140905-05.jpg", alt: "Yeouido 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140905/yeouido-140905-06.jpg", alt: "Yeouido 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140905/yeouido-140905-07.jpg", alt: "Yeouido 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140905/yeouido-140905-08.jpg", alt: "Yeouido 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140905/yeouido-140905-09.jpg", alt: "Yeouido 09" },
+            ]
+        },
+        {
+            title: "Illsan, September 3, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/illsan-140903/illsan-140903-01.jpg", alt: "Illsan 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/illsan-140903/illsan-140903-02.jpg", alt: "Illsan 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/illsan-140903/illsan-140903-03.jpg", alt: "Illsan 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/illsan-140903/illsan-140903-04.jpg", alt: "Illsan 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/illsan-140903/illsan-140903-05.jpg", alt: "Illsan 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/illsan-140903/illsan-140903-06.jpg", alt: "Illsan 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/illsan-140903/illsan-140903-07.jpg", alt: "Illsan 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/illsan-140903/illsan-140903-08.jpg", alt: "Illsan 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/illsan-140903/illsan-140903-09.jpg", alt: "Illsan 09" },
+            ]
+        },
+        {
+            title: "Inkigayo, August 24, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-140824/inkigayo-140824-01.jpg", alt: "Inkigayo 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-140824/inkigayo-140824-02.jpg", alt: "Inkigayo 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-140824/inkigayo-140824-03.jpg", alt: "Inkigayo 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-140824/inkigayo-140824-04.jpg", alt: "Inkigayo 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-140824/inkigayo-140824-05.jpg", alt: "Inkigayo 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-140824/inkigayo-140824-06.jpg", alt: "Inkigayo 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-140824/inkigayo-140824-07.jpg", alt: "Inkigayo 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-140824/inkigayo-140824-08.jpg", alt: "Inkigayo 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-140824/inkigayo-140824-09.jpg", alt: "Inkigayo 09" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-140824/inkigayo-140824-10.jpg", alt: "Inkigayo 10" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-140824/inkigayo-140824-11.jpg", alt: "Inkigayo 11" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/inkigayo-140824/inkigayo-140824-12.jpg", alt: "Inkigayo 12" },
+            ]
+        },
+        {
+            title: "Berlin, July 27, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/berlin-140727/berlin-140727-01.jpg", alt: "Berlin 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/berlin-140727/berlin-140727-02.jpg", alt: "Berlin 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/berlin-140727/berlin-140727-03.jpg", alt: "Berlin 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/berlin-140727/berlin-140727-04.jpg", alt: "Berlin 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/berlin-140727/berlin-140727-05.jpg", alt: "Berlin 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/berlin-140727/berlin-140727-06.jpg", alt: "Berlin 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/berlin-140727/berlin-140727-07.jpg", alt: "Berlin 07" },
+            ]
+        },
+        {
+            title: "Tokyo, June 8, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/tokyo-140608/tokyo-140608-01.jpg", alt: "Tokyo 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/tokyo-140608/tokyo-140608-02.jpg", alt: "Tokyo 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/tokyo-140608/tokyo-140608-03.jpg", alt: "Tokyo 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/tokyo-140608/tokyo-140608-04.jpg", alt: "Tokyo 04" },
+            ]
+        },
+        {
+            title: "Gwangju & Daejeon, May 17, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gwangju-and-daejeon-140517/gwangju-and-daejeon-140517-01.jpg", alt: "Gwangju & Daejeon 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gwangju-and-daejeon-140517/gwangju-and-daejeon-140517-02.jpg", alt: "Gwangju & Daejeon 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gwangju-and-daejeon-140517/gwangju-and-daejeon-140517-03.jpg", alt: "Gwangju & Daejeon 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gwangju-and-daejeon-140517/gwangju-and-daejeon-140517-04.jpg", alt: "Gwangju & Daejeon 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gwangju-and-daejeon-140517/gwangju-and-daejeon-140517-05.jpg", alt: "Gwangju & Daejeon 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gwangju-and-daejeon-140517/gwangju-and-daejeon-140517-06.jpg", alt: "Gwangju & Daejeon 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gwangju-and-daejeon-140517/gwangju-and-daejeon-140517-07.jpg", alt: "Gwangju & Daejeon 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gwangju-and-daejeon-140517/gwangju-and-daejeon-140517-08.jpg", alt: "Gwangju & Daejeon 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gwangju-and-daejeon-140517/gwangju-and-daejeon-140517-09.jpg", alt: "Gwangju & Daejeon 09" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gwangju-and-daejeon-140517/gwangju-and-daejeon-140517-10.jpg", alt: "Gwangju & Daejeon 10" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gwangju-and-daejeon-140517/gwangju-and-daejeon-140517-11.jpg", alt: "Gwangju & Daejeon 11" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gwangju-and-daejeon-140517/gwangju-and-daejeon-140517-12.jpg", alt: "Gwangju & Daejeon 12" },
+            ]
+        },
+        {
+            title: "Gimpo, April 13, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-140413/gimpo-140413-01.jpg", alt: "Gimpo 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-140413/gimpo-140413-02.jpg", alt: "Gimpo 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-140413/gimpo-140413-03.jpg", alt: "Gimpo 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-140413/gimpo-140413-04.jpg", alt: "Gimpo 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-140413/gimpo-140413-05.jpg", alt: "Gimpo 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-140413/gimpo-140413-06.jpg", alt: "Gimpo 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-140413/gimpo-140413-07.jpg", alt: "Gimpo 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-140413/gimpo-140413-08.jpg", alt: "Gimpo 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-140413/gimpo-140413-09.jpg", alt: "Gimpo 09" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/gimpo-140413/gimpo-140413-10.jpg", alt: "Gimpo 10" },
+            ]
+        },
+        {
+            title: "Yeouido, April 11, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140411/yeouido-140411-01.jpg", alt: "Yeouido 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140411/yeouido-140411-02.jpg", alt: "Yeouido 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140411/yeouido-140411-03.jpg", alt: "Yeouido 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140411/yeouido-140411-04.jpg", alt: "Yeouido 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140411/yeouido-140411-05.jpg", alt: "Yeouido 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140411/yeouido-140411-06.jpg", alt: "Yeouido 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140411/yeouido-140411-07.jpg", alt: "Yeouido 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140411/yeouido-140411-08.jpg", alt: "Yeouido 08" },
+            ]
+        },
+        {
+            title: "Pyeonchon, April 2, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/pyeonchon-140402/pyeonchon-140402-01.jpg", alt: "Pyeonchon 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/pyeonchon-140402/pyeonchon-140402-02.jpg", alt: "Pyeonchon 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/pyeonchon-140402/pyeonchon-140402-03.jpg", alt: "Pyeonchon 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/pyeonchon-140402/pyeonchon-140402-04.jpg", alt: "Pyeonchon 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/pyeonchon-140402/pyeonchon-140402-05.jpg", alt: "Pyeonchon 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/pyeonchon-140402/pyeonchon-140402-06.jpg", alt: "Pyeonchon 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/pyeonchon-140402/pyeonchon-140402-07.jpg", alt: "Pyeonchon 07" },
+            ]
+        },
+        {
+            title: "Daegu & Busan, March 30, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-and-busan-140330/daegu-and-busan-140330-01.jpg", alt: "Daegu & Busan 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-and-busan-140330/daegu-and-busan-140330-02.jpg", alt: "Daegu & Busan 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-and-busan-140330/daegu-and-busan-140330-03.jpg", alt: "Daegu & Busan 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-and-busan-140330/daegu-and-busan-140330-04.jpg", alt: "Daegu & Busan 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-and-busan-140330/daegu-and-busan-140330-05.jpg", alt: "Daegu & Busan 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-and-busan-140330/daegu-and-busan-140330-06.jpg", alt: "Daegu & Busan 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-and-busan-140330/daegu-and-busan-140330-07.jpg", alt: "Daegu & Busan 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-and-busan-140330/daegu-and-busan-140330-08.jpg", alt: "Daegu & Busan 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-and-busan-140330/daegu-and-busan-140330-09.jpg", alt: "Daegu & Busan 09" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-and-busan-140330/daegu-and-busan-140330-10.jpg", alt: "Daegu & Busan 10" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/daegu-and-busan-140330/daegu-and-busan-140330-11.jpg", alt: "Daegu & Busan 11" },
+            ]
+        },
+        {
+            title: "Jongno, March 16, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongno-140316/jongno-140316-01.jpg", alt: "Jongno 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongno-140316/jongno-140316-02.jpg", alt: "Jongno 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongno-140316/jongno-140316-03.jpg", alt: "Jongno 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongno-140316/jongno-140316-04.jpg", alt: "Jongno 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongno-140316/jongno-140316-05.jpg", alt: "Jongno 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongno-140316/jongno-140316-06.jpg", alt: "Jongno 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongno-140316/jongno-140316-07.jpg", alt: "Jongno 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongno-140316/jongno-140316-08.jpg", alt: "Jongno 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/jongno-140316/jongno-140316-09.jpg", alt: "Jongno 09" },
+            ]
+        },
+        {
+            title: "Sinchon, March 9, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/sinchon-140309/sinchon-140309-01.jpg", alt: "Sinchon 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/sinchon-140309/sinchon-140309-02.jpg", alt: "Sinchon 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/sinchon-140309/sinchon-140309-03.jpg", alt: "Sinchon 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/sinchon-140309/sinchon-140309-04.jpg", alt: "Sinchon 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/sinchon-140309/sinchon-140309-05.jpg", alt: "Sinchon 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/sinchon-140309/sinchon-140309-06.jpg", alt: "Sinchon 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/sinchon-140309/sinchon-140309-07.jpg", alt: "Sinchon 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/sinchon-140309/sinchon-140309-08.jpg", alt: "Sinchon 08" },
+            ]
+        },
+        {
+            title: "Yeouido, March 7, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140307/yeouido-140307-01.jpg", alt: "Yeouido 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140307/yeouido-140307-02.jpg", alt: "Yeouido 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140307/yeouido-140307-03.jpg", alt: "Yeouido 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140307/yeouido-140307-04.jpg", alt: "Yeouido 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140307/yeouido-140307-05.jpg", alt: "Yeouido 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140307/yeouido-140307-06.jpg", alt: "Yeouido 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140307/yeouido-140307-07.jpg", alt: "Yeouido 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/yeouido-140307/yeouido-140307-08.jpg", alt: "Yeouido 08" },
+            ]
+        },
+        {
+            title: "Mokdong, March 2, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mokdong-140302/mokdong-140302-01.jpg", alt: "Mokdong 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mokdong-140302/mokdong-140302-02.jpg", alt: "Mokdong 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mokdong-140302/mokdong-140302-03.jpg", alt: "Mokdong 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/mokdong-140302/mokdong-140302-04.jpg", alt: "Mokdong 04" },
+            ]
+        },
+        {
+            title: "Ilsan, March 1, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/ilsan-140301/ilsan-140301-01.jpg", alt: "Ilsan 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/ilsan-140301/ilsan-140301-02.jpg", alt: "Ilsan 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/ilsan-140301/ilsan-140301-03.jpg", alt: "Ilsan 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/ilsan-140301/ilsan-140301-04.jpg", alt: "Ilsan 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/ilsan-140301/ilsan-140301-05.jpg", alt: "Ilsan 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/ilsan-140301/ilsan-140301-06.jpg", alt: "Ilsan 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/ilsan-140301/ilsan-140301-07.jpg", alt: "Ilsan 07" },
+            ]
+        },
+        {
+            title: "Geondae, February 26, 2014",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/geondae-140226/geondae-140226-01.jpg", alt: "Geondae 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/geondae-140226/geondae-140226-02.jpg", alt: "Geondae 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/geondae-140226/geondae-140226-03.jpg", alt: "Geondae 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/geondae-140226/geondae-140226-04.jpg", alt: "Geondae 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/geondae-140226/geondae-140226-05.jpg", alt: "Geondae 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/geondae-140226/geondae-140226-06.jpg", alt: "Geondae 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/geondae-140226/geondae-140226-07.jpg", alt: "Geondae 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/geondae-140226/geondae-140226-08.jpg", alt: "Geondae 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/geondae-140226/geondae-140226-09.jpg", alt: "Geondae 09" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/geondae-140226/geondae-140226-10.jpg", alt: "Geondae 10" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/geondae-140226/geondae-140226-11.jpg", alt: "Geondae 11" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/archieve-photo@main/fansign2014/geondae-140226/geondae-140226-12.jpg", alt: "Geondae 12" },
+            ]
+        },
+    ];
+
+    // Ratakan semua foto dari semua grup jadi satu array,
+    // supaya di popup bisa geser terus lintas grup tanpa putus.
+    const memoriesData = memoriesGroups.flatMap(group => group.photos);
+
+    // ============ RENDER GRID PER GRUP ============
+    const main = document.getElementById('archive-main');
+    const countLabel = document.getElementById('archive-count');
+    countLabel.innerText = memoriesData.length + ' PHOTOS';
+
+    let flatIndex = 0;
+    memoriesGroups.forEach(group => {
+        const section = document.createElement('div');
+        section.className = 'archive-group';
+
+        const heading = document.createElement('h2');
+        heading.className = 'group-title';
+        heading.innerText = group.title;
+        section.appendChild(heading);
+
+        const grid = document.createElement('div');
+        grid.className = 'archive-grid';
+
+        group.photos.forEach(item => {
+            const capturedIndex = flatIndex;
+            const cell = document.createElement('div');
+            cell.className = 'archive-item';
+            cell.innerHTML = `<img src="${item.src}" alt="${item.alt}" loading="lazy">`;
+            cell.addEventListener('click', () => openLightbox(capturedIndex));
+            grid.appendChild(cell);
+            flatIndex++;
+        });
+
+        section.appendChild(grid);
+        main.appendChild(section);
+    });
+
+    // ============ LIGHTBOX LOGIC ============
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const figure = document.getElementById('lightbox-figure');
+    let currentIndex = 0;
+
+    function updateLightboxImage() {
+        lightboxImg.classList.remove('show');
+        setTimeout(() => {
+            lightboxImg.src = memoriesData[currentIndex].src;
+            lightboxImg.alt = memoriesData[currentIndex].alt;
+            lightboxCounter.innerText = String(currentIndex + 1).padStart(2, '0') + ' / ' + String(memoriesData.length).padStart(2, '0');
+            lightboxImg.classList.add('show');
+        }, 120);
+    }
+
+    function openLightbox(index) {
+        currentIndex = index;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        lightboxImg.classList.remove('show');
+        lightboxImg.src = memoriesData[currentIndex].src;
+        lightboxImg.alt = memoriesData[currentIndex].alt;
+        lightboxCounter.innerText = String(currentIndex + 1).padStart(2, '0') + ' / ' + String(memoriesData.length).padStart(2, '0');
+        requestAnimationFrame(() => lightboxImg.classList.add('show'));
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % memoriesData.length;
+        updateLightboxImage();
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + memoriesData.length) % memoriesData.length;
+        updateLightboxImage();
+    }
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('lightbox-next').addEventListener('click', showNext);
+    document.getElementById('lightbox-prev').addEventListener('click', showPrev);
+
+    // Klik area gelap di luar foto untuk menutup
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // Navigasi keyboard (panah kiri/kanan, Esc)
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'ArrowRight') showNext();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Swipe jari (touch) untuk geser foto
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    figure.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    figure.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchEndX - touchStartX;
+        const threshold = 50;
+        if (diff > threshold) {
+            showPrev();
+        } else if (diff < -threshold) {
+            showNext();
+        }
+    }, { passive: true });
+</script>
+
+</body>
+</html>
