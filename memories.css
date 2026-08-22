@@ -123,7 +123,7 @@ body{
 
 .archive-item{
     position:relative;
-    aspect-ratio:3 / 4;
+    aspect-ratio:1 / 1;
     overflow:hidden;
     cursor:pointer;
     background:#eee;
