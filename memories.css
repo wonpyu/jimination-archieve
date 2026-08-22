@@ -1,0 +1,213 @@
+body{
+    margin:0;
+    background:#0d0d0d;
+    display:flex;
+    justify-content:center;
+    font-family:'Inter', sans-serif;
+}
+
+.paper{
+    background:#fcfcfc;
+    box-shadow:0 10px 35px rgba(0,0,0,0.4);
+    border-radius:8px;
+    max-width:900px;
+    width:95%;
+    padding:70px 40px;
+    color:#1a1a1a;
+    margin:40px auto;
+}
+
+/* ================= EYEBROW / ARCHIVE PLATE HEADER ================= */
+.archive-header{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.archive-label{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.3rem, 2.4vw, 1.7rem);
+    letter-spacing:0.06em;
+    color:#1a1a1a;
+    margin:0;
+}
+
+.archive-divider{
+    width:46px;
+    height:1px;
+    background:#a67c52;
+    margin:14px auto 0;
+}
+
+.archive-count{
+    font-family:'Inter', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:#9a9a9a;
+    margin-top:12px;
+}
+
+/* ================= GROUP (LOKASI / TANGGAL) ================= */
+.archive-group{
+    margin-bottom:46px;
+}
+
+.archive-group:last-child{
+    margin-bottom:0;
+}
+
+.group-title{
+    font-family:'Inter', sans-serif;
+    font-size:0.78rem;
+    font-weight:600;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:#4a4a4a;
+    margin:0 0 14px;
+    padding-bottom:10px;
+    border-bottom:1px solid #eaeaea;
+}
+
+/* ================= ARCHIVE GRID ================= */
+.archive-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:4px;
+}
+
+@media (max-width:640px){
+    .archive-grid{
+        grid-template-columns:repeat(3, 1fr);
+        gap:3px;
+    }
+}
+
+.archive-item{
+    position:relative;
+    aspect-ratio:1 / 1;
+    overflow:hidden;
+    cursor:pointer;
+    background:#eee;
+}
+
+.archive-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    filter:grayscale(15%);
+    transform:scale(1.001);
+    transition:transform 0.6s cubic-bezier(0.25,1,0.5,1), filter 0.6s ease;
+}
+
+.archive-item:hover img{
+    transform:scale(1.06);
+    filter:grayscale(0%);
+}
+
+/* ================= LIGHTBOX ================= */
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(8,8,8,0.97);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity 0.35s ease;
+}
+
+.lightbox.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.lightbox-figure{
+    position:relative;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    touch-action:pan-y;
+}
+
+.lightbox-img{
+    max-width:88vw;
+    max-height:82vh;
+    object-fit:contain;
+    box-shadow:0 20px 60px rgba(0,0,0,0.6);
+    user-select:none;
+    -webkit-user-drag:none;
+    opacity:0;
+    transform:scale(0.98);
+    transition:opacity 0.25s ease, transform 0.25s ease;
+}
+
+.lightbox-img.show{
+    opacity:1;
+    transform:scale(1);
+}
+
+.lightbox-close{
+    position:absolute;
+    top:24px;
+    right:28px;
+    background:none;
+    border:none;
+    color:#f2f2f2;
+    font-size:1.6rem;
+    font-family:'Inter', sans-serif;
+    font-weight:300;
+    cursor:pointer;
+    line-height:1;
+    padding:6px;
+    opacity:0.75;
+    transition:opacity 0.2s ease;
+}
+
+.lightbox-close:hover{ opacity:1; }
+
+.lightbox-nav{
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:15%;
+    background:none;
+    border:none;
+    color:#f2f2f2;
+    font-size:1.8rem;
+    font-family:'Inter', sans-serif;
+    font-weight:300;
+    cursor:pointer;
+    opacity:0;
+    transition:opacity 0.2s ease;
+    display:flex;
+    align-items:center;
+}
+
+.lightbox-figure:hover .lightbox-nav{ opacity:0.6; }
+.lightbox-nav:hover{ opacity:1 !important; }
+
+.lightbox-prev{ left:0; justify-content:flex-start; padding-left:18px; }
+.lightbox-next{ right:0; justify-content:flex-end; padding-right:18px; }
+
+.lightbox-counter{
+    position:absolute;
+    bottom:26px;
+    left:50%;
+    transform:translateX(-50%);
+    font-family:'Inter', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    color:#a67c52;
+}
+
+@media (max-width:640px){
+    .lightbox-nav{ width:22%; }
+    .lightbox-close{ top:16px; right:16px; }
+}

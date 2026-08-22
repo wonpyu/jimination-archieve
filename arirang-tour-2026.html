@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="https://lov3-lgtm.github.io/jimination-assets/icon/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="https://lov3-lgtm.github.io/jimination-assets/icon/apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JIMINATION">
+<title>Jimin Arirang World Tour Memories | Photo Archive</title>
+
+<meta name="description" content="A photo archive of memorable Jimin moments, curated and preserved over time.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://jimination.com/navigation/vault/archieve.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jimin Memories | Photo Archive">
+<meta property="og:description" content="A photo archive of memorable Jimin moments, curated and preserved over time.">
+<meta property="og:url" content="https://jimination.com/navigation/vault/archieve.html">
+<meta property="og:image" content="https://lh3.googleusercontent.com/d/1-pDIhitVl6-rd28m9zzYKzLvMyDOkguK">
+
+<link rel="stylesheet" href="memories.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="paper">
+
+    <header class="archive-header">
+        <p class="archive-label">JImin Arirang World Tour Memories</p>
+        <div class="archive-divider"></div>
+        <p class="archive-count" id="archive-count"></p>
+    </header>
+
+    <main id="archive-main"></main>
+
+</div>
+
+<!-- ================= LIGHTBOX ================= -->
+<div class="lightbox" id="lightbox">
+    <div class="lightbox-figure" id="lightbox-figure">
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Sebelumnya">&#10094;</button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="">
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Berikutnya">&#10095;</button>
+        <button class="lightbox-close" id="lightbox-close" aria-label="Tutup">&#10005;</button>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+</div>
+
+<script>
+    // ============ DATABASE FOTO (dikelompokkan per lokasi/tanggal) ============
+    // Tambah grup baru dengan copy-paste blok { title: "...", photos: [...] } di bawah.
+    // Ganti "src" dengan link foto kamu sendiri (Cloudinary, dsb).
+    const memoriesGroups = [
+        {
+            title: "LA, June 26, 2026",
+            photos: [
+                { src: "https://picsum.photos/seed/la01/700/700", alt: "LA 01" },
+                { src: "https://picsum.photos/seed/la02/700/700", alt: "LA 02" },
+                { src: "https://picsum.photos/seed/la03/700/700", alt: "LA 03" },
+                { src: "https://picsum.photos/seed/la04/700/700", alt: "LA 04" },
+            ]
+        },
+        {
+            title: "New York, July 3, 2026",
+            photos: [
+                { src: "https://picsum.photos/seed/ny01/700/700", alt: "NY 01" },
+                { src: "https://picsum.photos/seed/ny02/700/700", alt: "NY 02" },
+                { src: "https://picsum.photos/seed/ny03/700/700", alt: "NY 03" },
+                { src: "https://picsum.photos/seed/ny04/700/700", alt: "NY 04" },
+            ]
+        },
+    ];
+
+    // Ratakan semua foto dari semua grup jadi satu array,
+    // supaya di popup bisa geser terus lintas grup tanpa putus.
+    const memoriesData = memoriesGroups.flatMap(group => group.photos);
+
+    // ============ RENDER GRID PER GRUP ============
+    const main = document.getElementById('archive-main');
+    const countLabel = document.getElementById('archive-count');
+    countLabel.innerText = memoriesData.length + ' PHOTOS';
+
+    let flatIndex = 0;
+    memoriesGroups.forEach(group => {
+        const section = document.createElement('div');
+        section.className = 'archive-group';
+
+        const heading = document.createElement('h2');
+        heading.className = 'group-title';
+        heading.innerText = group.title;
+        section.appendChild(heading);
+
+        const grid = document.createElement('div');
+        grid.className = 'archive-grid';
+
+        group.photos.forEach(item => {
+            const capturedIndex = flatIndex;
+            const cell = document.createElement('div');
+            cell.className = 'archive-item';
+            cell.innerHTML = `<img src="${item.src}" alt="${item.alt}" loading="lazy">`;
+            cell.addEventListener('click', () => openLightbox(capturedIndex));
+            grid.appendChild(cell);
+            flatIndex++;
+        });
+
+        section.appendChild(grid);
+        main.appendChild(section);
+    });
+
+    // ============ LIGHTBOX LOGIC ============
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const figure = document.getElementById('lightbox-figure');
+    let currentIndex = 0;
+
+    function updateLightboxImage() {
+        lightboxImg.classList.remove('show');
+        setTimeout(() => {
+            lightboxImg.src = memoriesData[currentIndex].src;
+            lightboxImg.alt = memoriesData[currentIndex].alt;
+            lightboxCounter.innerText = String(currentIndex + 1).padStart(2, '0') + ' / ' + String(memoriesData.length).padStart(2, '0');
+            lightboxImg.classList.add('show');
+        }, 120);
+    }
+
+    function openLightbox(index) {
+        currentIndex = index;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        lightboxImg.classList.remove('show');
+        lightboxImg.src = memoriesData[currentIndex].src;
+        lightboxImg.alt = memoriesData[currentIndex].alt;
+        lightboxCounter.innerText = String(currentIndex + 1).padStart(2, '0') + ' / ' + String(memoriesData.length).padStart(2, '0');
+        requestAnimationFrame(() => lightboxImg.classList.add('show'));
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % memoriesData.length;
+        updateLightboxImage();
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + memoriesData.length) % memoriesData.length;
+        updateLightboxImage();
+    }
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('lightbox-next').addEventListener('click', showNext);
+    document.getElementById('lightbox-prev').addEventListener('click', showPrev);
+
+    // Klik area gelap di luar foto untuk menutup
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // Navigasi keyboard (panah kiri/kanan, Esc)
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'ArrowRight') showNext();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Swipe jari (touch) untuk geser foto
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    figure.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    figure.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchEndX - touchStartX;
+        const threshold = 50;
+        if (diff > threshold) {
+            showPrev();
+        } else if (diff < -threshold) {
+            showNext();
+        }
+    }, { passive: true });
+</script>
+
+</body>
+</html>
