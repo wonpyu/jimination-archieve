@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="https://lov3-lgtm.github.io/jimination-assets/icon/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="https://lov3-lgtm.github.io/jimination-assets/icon/apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JIMINATION">
+<title>Jimin Fashion Airport 2018 | Lookbook</title>
+
+<meta name="description" content="A curated lookbook of Jimin's airport fashion moments.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://jimination.com/navigation/vault/airport2018.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jimin Fashion Airport 2018 | Lookbook">
+<meta property="og:description" content="A curated lookbook of Jimin's airport fashion moments.">
+<meta property="og:url" content="https://jimination.com/navigation/vault/archives.html">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-01.jpg">
+
+<link rel="stylesheet" href="airport.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<a href="https://jimination.com/navigation/vault/archives" class="back-btn-fixed" aria-label="Back to Jimination">&#8592; Jimination</a>
+
+<div class="paper">
+
+    <header class="lookbook-header">
+        <p class="lookbook-eyebrow">Style Archive</p>
+        <h1 class="lookbook-title">Jimin Fashion Airport 2018</h1>
+        <div class="lookbook-divider"></div>
+        <p class="lookbook-count" id="lookbook-count"></p>
+    </header>
+
+    <main>
+        <div class="lookbook-grid" id="lookbook-grid"></div>
+    </main>
+
+</div>
+
+<!-- ================= LIGHTBOX ================= -->
+<div class="lightbox" id="lightbox">
+    <div class="lightbox-figure" id="lightbox-figure">
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Sebelumnya">&#10094;</button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="">
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Berikutnya">&#10095;</button>
+        <button class="lightbox-close" id="lightbox-close" aria-label="Tutup">&#10005;</button>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+    <p class="lightbox-date" id="lightbox-date"></p>
+</div>
+
+<script>
+    // ============ DATABASE LOOK (1 foto = 1 outfit/tanggal) ============
+    // Foto di-host di GitHub (1013pjmo-art/Airport) via jsDelivr CDN.
+    const looks = [
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-01.jpg", date: "December 22, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-02.jpg", date: "December 21, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-03.jpg", date: "December 15, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-04.jpg", date: "December 13, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-05.jpg", date: "December 7, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-06.jpg", date: "November 25, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-07.jpg", date: "November 10, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-08.jpg", date: "October 24, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-09.jpg", date: "September 3, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-10.jpg", date: "August 31, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-11.jpg", date: "August 6, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-12.jpg", date: "July 8, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-13.jpg", date: "July 6, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-14.jpg", date: "June 29, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-15.jpg", date: "May 22, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-16.jpg", date: "May 21, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-17.jpg", date: "May 14, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-18.jpg", date: "April 25, 2018" },
+        { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Airport@main/2018/look-19.jpg", date: "April 13, 2018" },
+    ];
+
+    // ============ RENDER GRID ============
+    const grid = document.getElementById('lookbook-grid');
+    const countLabel = document.getElementById('lookbook-count');
+    countLabel.innerText = looks.length + ' LOOKS';
+
+    looks.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'look-card';
+        card.innerHTML = `
+            <div class="look-frame">
+                <img src="${item.src}" alt="Jimin airport look, ${item.date}" loading="lazy">
+            </div>
+            <p class="look-date">${item.date}</p>
+        `;
+        card.addEventListener('click', () => openLightbox(index));
+        grid.appendChild(card);
+    });
+
+    // ============ LIGHTBOX LOGIC ============
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxDate = document.getElementById('lightbox-date');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const figure = document.getElementById('lightbox-figure');
+    let currentIndex = 0;
+
+    function updateLightboxImage() {
+        lightboxImg.classList.remove('show');
+        lightboxDate.classList.remove('show');
+        setTimeout(() => {
+            lightboxImg.src = looks[currentIndex].src;
+            lightboxImg.alt = 'Jimin airport look, ' + looks[currentIndex].date;
+            lightboxDate.innerText = looks[currentIndex].date;
+            lightboxCounter.innerText = String(currentIndex + 1).padStart(2, '0') + ' / ' + String(looks.length).padStart(2, '0');
+            lightboxImg.classList.add('show');
+            lightboxDate.classList.add('show');
+        }, 120);
+    }
+
+    function openLightbox(index) {
+        currentIndex = index;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        lightboxImg.classList.remove('show');
+        lightboxDate.classList.remove('show');
+        lightboxImg.src = looks[currentIndex].src;
+        lightboxImg.alt = 'Jimin airport look, ' + looks[currentIndex].date;
+        lightboxDate.innerText = looks[currentIndex].date;
+        lightboxCounter.innerText = String(currentIndex + 1).padStart(2, '0') + ' / ' + String(looks.length).padStart(2, '0');
+        requestAnimationFrame(() => {
+            lightboxImg.classList.add('show');
+            lightboxDate.classList.add('show');
+        });
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % looks.length;
+        updateLightboxImage();
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + looks.length) % looks.length;
+        updateLightboxImage();
+    }
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('lightbox-next').addEventListener('click', showNext);
+    document.getElementById('lightbox-prev').addEventListener('click', showPrev);
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'ArrowRight') showNext();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    figure.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    figure.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchEndX - touchStartX;
+        const threshold = 50;
+        if (diff > threshold) {
+            showPrev();
+        } else if (diff < -threshold) {
+            showNext();
+        }
+    }, { passive: true });
+</script>
+
+</body>
+</html>
