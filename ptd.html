@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="https://lov3-lgtm.github.io/jimination-assets/icon/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="https://lov3-lgtm.github.io/jimination-assets/icon/apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JIMINATION">
+<title>BTS Permission to Dance On Stage | Photo Archive</title>
+
+<meta name="description" content="A photo archive of memorable Jimin moments from BTS Permission to Dance On Stage, curated and preserved over time.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://jimination.com/navigation/vault/ptd.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="BTS Permission to Dance On Stage | Photo Archive">
+<meta property="og:description" content="A photo archive of memorable Jimin moments from BTS Permission to Dance On Stage, curated and preserved over time.">
+<meta property="og:url" content="https://jimination.com/navigation/vault/ptd.html">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220416/lv-220416-01.jpg">
+
+<link rel="stylesheet" href="memories.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<a href="https://jimination.com/navigation/vault/archives" class="back-btn-fixed" aria-label="Back to Jimination">&#8592; Jimination</a>
+
+<div class="paper">
+
+    <header class="archive-header">
+        <p class="archive-label">BTS Permission to Dance On Stage</p>
+        <div class="archive-divider"></div>
+        <p class="archive-count" id="archive-count"></p>
+    </header>
+
+    <main id="archive-main"></main>
+
+</div>
+
+<!-- ================= LIGHTBOX ================= -->
+<div class="lightbox" id="lightbox">
+    <div class="lightbox-figure" id="lightbox-figure">
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Sebelumnya">&#10094;</button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="">
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Berikutnya">&#10095;</button>
+        <button class="lightbox-close" id="lightbox-close" aria-label="Tutup">&#10005;</button>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+</div>
+
+<script>
+    // ============ DATABASE FOTO (dikelompokkan per kota/tanggal) ============
+    // Foto di-host di GitHub (wonpyu/archieve-photo) via jsDelivr CDN.
+    const memoriesGroups = [
+        {
+            title: "Las Vegas, April 16, 2022",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220416/lv-220416-01.jpg", alt: "Las Vegas 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220416/lv-220416-02.jpg", alt: "Las Vegas 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220416/lv-220416-03.jpg", alt: "Las Vegas 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220416/lv-220416-04.jpg", alt: "Las Vegas 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220416/lv-220416-05.jpg", alt: "Las Vegas 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220416/lv-220416-06.jpg", alt: "Las Vegas 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220416/lv-220416-07.jpg", alt: "Las Vegas 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220416/lv-220416-08.jpg", alt: "Las Vegas 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220416/lv-220416-09.jpg", alt: "Las Vegas 09" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220416/lv-220416-10.jpg", alt: "Las Vegas 10" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220416/lv-220416-11.jpg", alt: "Las Vegas 11" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220416/lv-220416-12.jpg", alt: "Las Vegas 12" },
+            ]
+        },
+        {
+            title: "Las Vegas, April 15, 2022",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220415/lv-220415-01.jpg", alt: "Las Vegas 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220415/lv-220415-02.jpg", alt: "Las Vegas 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220415/lv-220415-03.jpg", alt: "Las Vegas 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220415/lv-220415-04.jpg", alt: "Las Vegas 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220415/lv-220415-05.jpg", alt: "Las Vegas 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220415/lv-220415-06.jpg", alt: "Las Vegas 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220415/lv-220415-07.jpg", alt: "Las Vegas 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220415/lv-220415-08.jpg", alt: "Las Vegas 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220415/lv-220415-09.jpg", alt: "Las Vegas 09" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220415/lv-220415-10.jpg", alt: "Las Vegas 10" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220415/lv-220415-11.jpg", alt: "Las Vegas 11" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220415/lv-220415-12.jpg", alt: "Las Vegas 12" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220415/lv-220415-13.jpg", alt: "Las Vegas 13" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220415/lv-220415-14.jpg", alt: "Las Vegas 14" },
+            ]
+        },
+        {
+            title: "Las Vegas, April 9, 2022",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220409/lv-220409-01.jpg", alt: "Las Vegas 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220409/lv-220409-02.jpg", alt: "Las Vegas 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220409/lv-220409-03.jpg", alt: "Las Vegas 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220409/lv-220409-04.jpg", alt: "Las Vegas 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220409/lv-220409-05.jpg", alt: "Las Vegas 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220409/lv-220409-06.jpg", alt: "Las Vegas 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220409/lv-220409-07.jpg", alt: "Las Vegas 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220409/lv-220409-08.jpg", alt: "Las Vegas 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220409/lv-220409-09.jpg", alt: "Las Vegas 09" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220409/lv-220409-10.jpg", alt: "Las Vegas 10" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220409/lv-220409-11.jpg", alt: "Las Vegas 11" },
+            ]
+        },
+        {
+            title: "Las Vegas, April 8, 2022",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220408/lv-220408-01.jpg", alt: "Las Vegas 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220408/lv-220408-02.jpg", alt: "Las Vegas 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220408/lv-220408-03.jpg", alt: "Las Vegas 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220408/lv-220408-04.jpg", alt: "Las Vegas 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220408/lv-220408-05.jpg", alt: "Las Vegas 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220408/lv-220408-06.jpg", alt: "Las Vegas 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220408/lv-220408-07.jpg", alt: "Las Vegas 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220408/lv-220408-08.jpg", alt: "Las Vegas 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220408/lv-220408-09.jpg", alt: "Las Vegas 09" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220408/lv-220408-10.jpg", alt: "Las Vegas 10" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220408/lv-220408-11.jpg", alt: "Las Vegas 11" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/lv-220408/lv-220408-12.jpg", alt: "Las Vegas 12" },
+            ]
+        },
+        {
+            title: "Seoul, March 13, 2022",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-01.jpg", alt: "Seoul 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-02.jpg", alt: "Seoul 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-03.jpg", alt: "Seoul 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-04.jpg", alt: "Seoul 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-05.jpg", alt: "Seoul 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-06.jpg", alt: "Seoul 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-07.jpg", alt: "Seoul 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-08.jpg", alt: "Seoul 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-09.jpg", alt: "Seoul 09" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-10.jpg", alt: "Seoul 10" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-11.jpg", alt: "Seoul 11" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-12.jpg", alt: "Seoul 12" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-13.jpg", alt: "Seoul 13" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-14.jpg", alt: "Seoul 14" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-15.jpg", alt: "Seoul 15" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-16.jpg", alt: "Seoul 16" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-17.jpg", alt: "Seoul 17" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-18.jpg", alt: "Seoul 18" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-19.jpg", alt: "Seoul 19" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-20.jpg", alt: "Seoul 20" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-21.jpg", alt: "Seoul 21" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-22.jpg", alt: "Seoul 22" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-23.jpg", alt: "Seoul 23" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220313/seoul-220313-24.jpg", alt: "Seoul 24" },
+            ]
+        },
+        {
+            title: "Seoul, March 12, 2022",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-01.jpg", alt: "Seoul 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-02.jpg", alt: "Seoul 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-03.jpg", alt: "Seoul 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-04.jpg", alt: "Seoul 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-05.jpg", alt: "Seoul 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-06.jpg", alt: "Seoul 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-07.jpg", alt: "Seoul 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-08.jpg", alt: "Seoul 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-09.jpg", alt: "Seoul 09" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-10.jpg", alt: "Seoul 10" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-11.jpg", alt: "Seoul 11" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-12.jpg", alt: "Seoul 12" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-13.jpg", alt: "Seoul 13" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-14.jpg", alt: "Seoul 14" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-15.jpg", alt: "Seoul 15" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-16.jpg", alt: "Seoul 16" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-17.jpg", alt: "Seoul 17" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220312/seoul-220312-18.jpg", alt: "Seoul 18" },
+            ]
+        },
+        {
+            title: "Seoul, March 10, 2022",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220310/seoul-220310-01.jpg", alt: "Seoul 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220310/seoul-220310-02.jpg", alt: "Seoul 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220310/seoul-220310-03.jpg", alt: "Seoul 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220310/seoul-220310-04.jpg", alt: "Seoul 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220310/seoul-220310-05.jpg", alt: "Seoul 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220310/seoul-220310-06.jpg", alt: "Seoul 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220310/seoul-220310-07.jpg", alt: "Seoul 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220310/seoul-220310-08.jpg", alt: "Seoul 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220310/seoul-220310-09.jpg", alt: "Seoul 09" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220310/seoul-220310-10.jpg", alt: "Seoul 10" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220310/seoul-220310-11.jpg", alt: "Seoul 11" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220310/seoul-220310-12.jpg", alt: "Seoul 12" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220310/seoul-220310-13.jpg", alt: "Seoul 13" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220310/seoul-220310-14.jpg", alt: "Seoul 14" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/seoul-220310/seoul-220310-15.jpg", alt: "Seoul 15" },
+            ]
+        },
+        {
+            title: "Los Angeles, December 2, 2021",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-01.jpg", alt: "Los Angeles 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-02.jpg", alt: "Los Angeles 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-03.jpg", alt: "Los Angeles 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-04.jpg", alt: "Los Angeles 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-05.jpg", alt: "Los Angeles 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-06.jpg", alt: "Los Angeles 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-07.jpg", alt: "Los Angeles 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-08.jpg", alt: "Los Angeles 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-09.jpg", alt: "Los Angeles 09" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-10.jpg", alt: "Los Angeles 10" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-11.jpg", alt: "Los Angeles 11" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-12.jpg", alt: "Los Angeles 12" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-13.jpg", alt: "Los Angeles 13" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-14.jpg", alt: "Los Angeles 14" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-15.jpg", alt: "Los Angeles 15" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-16.jpg", alt: "Los Angeles 16" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-17.jpg", alt: "Los Angeles 17" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-18.jpg", alt: "Los Angeles 18" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-19.jpg", alt: "Los Angeles 19" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211202/la-211202-20.jpg", alt: "Los Angeles 20" },
+            ]
+        },
+        {
+            title: "Los Angeles, December 1, 2021",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211201/la-211201-01.jpg", alt: "Los Angeles 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211201/la-211201-02.jpg", alt: "Los Angeles 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211201/la-211201-03.jpg", alt: "Los Angeles 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211201/la-211201-04.jpg", alt: "Los Angeles 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211201/la-211201-05.jpg", alt: "Los Angeles 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211201/la-211201-06.jpg", alt: "Los Angeles 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211201/la-211201-07.jpg", alt: "Los Angeles 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211201/la-211201-08.jpg", alt: "Los Angeles 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211201/la-211201-09.jpg", alt: "Los Angeles 09" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211201/la-211201-10.jpg", alt: "Los Angeles 10" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211201/la-211201-11.jpg", alt: "Los Angeles 11" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211201/la-211201-12.jpg", alt: "Los Angeles 12" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211201/la-211201-13.jpg", alt: "Los Angeles 13" },
+            ]
+        },
+        {
+            title: "Los Angeles, November 28, 2021",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211128/la-211128-01.jpg", alt: "Los Angeles 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211128/la-211128-02.jpg", alt: "Los Angeles 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211128/la-211128-03.jpg", alt: "Los Angeles 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211128/la-211128-04.jpg", alt: "Los Angeles 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211128/la-211128-05.jpg", alt: "Los Angeles 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211128/la-211128-06.jpg", alt: "Los Angeles 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211128/la-211128-07.jpg", alt: "Los Angeles 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211128/la-211128-08.jpg", alt: "Los Angeles 08" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211128/la-211128-09.jpg", alt: "Los Angeles 09" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211128/la-211128-10.jpg", alt: "Los Angeles 10" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211128/la-211128-11.jpg", alt: "Los Angeles 11" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211128/la-211128-12.jpg", alt: "Los Angeles 12" },
+            ]
+        },
+        {
+            title: "Los Angeles, November 27, 2021",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211127/la-211127-01.jpg", alt: "Los Angeles 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211127/la-211127-02.jpg", alt: "Los Angeles 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211127/la-211127-03.jpg", alt: "Los Angeles 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211127/la-211127-04.jpg", alt: "Los Angeles 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211127/la-211127-05.jpg", alt: "Los Angeles 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211127/la-211127-06.jpg", alt: "Los Angeles 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211127/la-211127-07.jpg", alt: "Los Angeles 07" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211127/la-211127-08.jpg", alt: "Los Angeles 08" },
+            ]
+        },
+        {
+            title: "Los Angeles, October 24, 2021",
+            photos: [
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211024/la-211024-01.jpg", alt: "Los Angeles 01" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211024/la-211024-02.jpg", alt: "Los Angeles 02" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211024/la-211024-03.jpg", alt: "Los Angeles 03" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211024/la-211024-04.jpg", alt: "Los Angeles 04" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211024/la-211024-05.jpg", alt: "Los Angeles 05" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211024/la-211024-06.jpg", alt: "Los Angeles 06" },
+                { src: "https://cdn.jsdelivr.net/gh/1013pjmo-art/Concert@main/ptd/la-211024/la-211024-07.jpg", alt: "Los Angeles 07" },
+            ]
+        },
+    ];
+
+    // Ratakan semua foto dari semua grup jadi satu array,
+    // supaya di popup bisa geser terus lintas grup tanpa putus.
+    const memoriesData = memoriesGroups.flatMap(group => group.photos);
+
+    // ============ RENDER GRID PER GRUP ============
+    const main = document.getElementById('archive-main');
+    const countLabel = document.getElementById('archive-count');
+    countLabel.innerText = memoriesData.length + ' PHOTOS';
+
+    let flatIndex = 0;
+    memoriesGroups.forEach(group => {
+        const section = document.createElement('div');
+        section.className = 'archive-group';
+
+        const heading = document.createElement('h2');
+        heading.className = 'group-title';
+        heading.innerText = group.title;
+        section.appendChild(heading);
+
+        const grid = document.createElement('div');
+        grid.className = 'archive-grid';
+
+        group.photos.forEach(item => {
+            const capturedIndex = flatIndex;
+            const cell = document.createElement('div');
+            cell.className = 'archive-item';
+            cell.innerHTML = `<img src="${item.src}" alt="${item.alt}" loading="lazy">`;
+            cell.addEventListener('click', () => openLightbox(capturedIndex));
+            grid.appendChild(cell);
+            flatIndex++;
+        });
+
+        section.appendChild(grid);
+        main.appendChild(section);
+    });
+
+    // ============ LIGHTBOX LOGIC ============
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const figure = document.getElementById('lightbox-figure');
+    let currentIndex = 0;
+
+    function updateLightboxImage() {
+        lightboxImg.classList.remove('show');
+        setTimeout(() => {
+            lightboxImg.src = memoriesData[currentIndex].src;
+            lightboxImg.alt = memoriesData[currentIndex].alt;
+            lightboxCounter.innerText = String(currentIndex + 1).padStart(2, '0') + ' / ' + String(memoriesData.length).padStart(2, '0');
+            lightboxImg.classList.add('show');
+        }, 120);
+    }
+
+    function openLightbox(index) {
+        currentIndex = index;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        lightboxImg.classList.remove('show');
+        lightboxImg.src = memoriesData[currentIndex].src;
+        lightboxImg.alt = memoriesData[currentIndex].alt;
+        lightboxCounter.innerText = String(currentIndex + 1).padStart(2, '0') + ' / ' + String(memoriesData.length).padStart(2, '0');
+        requestAnimationFrame(() => lightboxImg.classList.add('show'));
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % memoriesData.length;
+        updateLightboxImage();
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + memoriesData.length) % memoriesData.length;
+        updateLightboxImage();
+    }
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('lightbox-next').addEventListener('click', showNext);
+    document.getElementById('lightbox-prev').addEventListener('click', showPrev);
+
+    // Klik area gelap di luar foto untuk menutup
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // Navigasi keyboard (panah kiri/kanan, Esc)
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'ArrowRight') showNext();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Swipe jari (touch) untuk geser foto
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    figure.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    figure.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchEndX - touchStartX;
+        const threshold = 50;
+        if (diff > threshold) {
+            showPrev();
+        } else if (diff < -threshold) {
+            showNext();
+        }
+    }, { passive: true });
+</script>
+
+</body>
+</html>
