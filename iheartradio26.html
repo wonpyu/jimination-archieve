@@ -93,6 +93,90 @@
       }
     </style>
 
+    <section class="jm-gallery">
+      <h2>TikTok</h2>
+      <div class="jm-grid" id="jm-tiktok-grid"></div>
+
+      <h2>Tweet</h2>
+      <div class="jm-grid" id="jm-tweet-grid"></div>
+    </section>
+
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    <script>
+    /* ====== EDIT DI SINI ====== */
+    const TIKTOKS = [
+      { id: "7687153897105919262", title: "2.0 Jimin" },
+      { id: "7687157437098364191", title: "Swim Jimin" }
+    ];
+    const TWEETS = [
+      { id: "2101197865796407529", title: "video 1" },
+      { id: "2101198784491581503", title: "video 2" }
+    ];
+    /* ========================== */
+
+    const TT_W = 325, TT_H = 740, TW_W = 400;
+
+    function withTwttr(cb) {
+      if (window.twttr && twttr.widgets) cb();
+      else setTimeout(() => withTwttr(cb), 200);
+    }
+
+    function build(item, type, grid) {
+      const card = document.createElement("div");
+      card.className = "jm-card";
+
+      const box = document.createElement("div");
+      box.className = "jm-box";
+
+      const inner = document.createElement("div");
+      inner.className = "jm-inner";
+      box.appendChild(inner);
+
+      const title = document.createElement("p");
+      title.className = "jm-title";
+      title.textContent = item.title;
+
+      card.append(box, title);
+      grid.appendChild(card);
+
+      const baseW = type === "tiktok" ? TT_W : TW_W;
+      inner.style.width = baseW + "px";
+
+      function fit() {
+        const w = box.clientWidth;
+        if (!w) return;
+        const s = w / baseW;
+        const h = inner.offsetHeight;
+        inner.style.transform = "scale(" + s + ")";
+        box.style.height = (h * s) + "px";
+      }
+
+      if (window.ResizeObserver) {
+        const ro = new ResizeObserver(fit);
+        ro.observe(box);
+        ro.observe(inner);
+      } else {
+        window.addEventListener("resize", fit);
+        setInterval(fit, 1000);
+      }
+
+      if (type === "tiktok") {
+        const f = document.createElement("iframe");
+        f.src = "https://www.tiktok.com/embed/v2/" + item.id;
+        f.style.cssText = "width:" + TT_W + "px;height:" + TT_H + "px";
+        f.allow = "fullscreen";
+        inner.appendChild(f);
+      } else {
+        withTwttr(() => twttr.widgets.createTweet(item.id, inner, { dnt: true, width: TW_W }));
+      }
+      fit();
+    }
+
+    TIKTOKS.forEach(i => build(i, "tiktok", document.getElementById("jm-tiktok-grid")));
+    TWEETS.forEach(i => build(i, "tweet", document.getElementById("jm-tweet-grid")));
+    </script>
+
 </div>
 
 <!-- LIGHTBOX -->
