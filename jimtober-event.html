@@ -23,6 +23,18 @@
     /* hapus garis kuning di atas card vote + kasih jarak dari event terakhir */
     .vote-card { border-top: none !important; margin-top: 48px; }
     .vote-card::before, .vote-card::after { display: none !important; }
+
+    /* jumlah project + pencarian negara */
+    .jt-total { margin: 14px 0 0; font-family: 'Fredoka','Quicksand',sans-serif; font-weight: 600; font-size: 1.05rem; color: #7a5a3a; text-align: center; }
+    .jt-total strong { color: #e0a800; font-size: 1.25em; }
+    .jt-search { position: relative; max-width: 420px; margin: 16px auto 36px; padding: 0 16px; box-sizing: border-box; }
+    .jt-search i.fa-magnifying-glass { position: absolute; left: 32px; top: 50%; transform: translateY(-50%); color: #b8924f; pointer-events: none; }
+    .jt-search input { width: 100%; box-sizing: border-box; padding: 12px 40px 12px 42px; border: 2px solid #f1d88a; border-radius: 999px; background: #fffdf5; color: #5a3e2b; font: 600 0.95rem 'Quicksand',sans-serif; outline: none; transition: border-color .2s, box-shadow .2s; }
+    .jt-search input:focus { border-color: #e0a800; box-shadow: 0 0 0 3px rgba(224,168,0,.2); }
+    .jt-search-clear { position: absolute; right: 28px; top: 50%; transform: translateY(-50%); border: 0; background: none; color: #b8924f; font-size: 1rem; cursor: pointer; display: none; padding: 4px 6px; }
+    .jt-search-clear.show { display: block; }
+    .event-country { margin: 0 0 8px; font-weight: 700; font-size: 0.9rem; color: #b8862b; }
+    .event-country i { margin-right: 4px; }
 </style>
 </head>
 
@@ -40,7 +52,15 @@
         </h1>
         <p class="sub-title">Jimtober Event <span id="jt-year">2026</span></p>
         <div class="hero-divider"></div>
+        <p class="jt-total" id="jt-total"></p>
     </header>
+
+    <!-- PENCARIAN NEGARA -->
+    <div class="jt-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="search" id="jt-search" placeholder="Cari negara… (mis. Indonesia, Brazil)" autocomplete="off" aria-label="Cari negara">
+        <button type="button" class="jt-search-clear" id="jt-search-clear" aria-label="Hapus pencarian">&#10005;</button>
+    </div>
 
 
     <!-- EVENT (update dari Google Sheet) -->
@@ -377,6 +397,12 @@
         /* ---- baris poster + teks ---- */
         const row = el('div', 'event-row');
         const text = el('div', 'event-text');
+        if (ev.country) {
+            const c = el('p', 'event-country');
+            c.innerHTML = '<i class="fa-solid fa-earth-asia"></i>';
+            c.appendChild(document.createTextNode(ev.country));
+            text.appendChild(c);
+        }
         if (ev.credit_name) {
             const credit = el('p', 'event-credit', 'Project by ');
             if (isUrl(ev.credit_link)) {
@@ -453,6 +479,25 @@
         box.appendChild(el('p', 'jt-status', msg));
     }
 
+    let jtAllEvents = [];
+
+    // render ulang daftar event sesuai kata kunci negara (kosong = tampilkan semua)
+    function jtRender() {
+        const box = document.getElementById('jt-events');
+        const q = document.getElementById('jt-search').value.trim().toLowerCase();
+        const list = q ? jtAllEvents.filter(ev => (ev.country || '').toLowerCase().includes(q)) : jtAllEvents;
+
+        const total = document.getElementById('jt-total');
+        total.innerHTML = q
+            ? 'Menampilkan <strong>' + list.length + '</strong> dari ' + jtAllEvents.length + ' projects'
+            : '<strong>' + jtAllEvents.length + '</strong> Projects';
+
+        box.innerHTML = '';
+        if (!list.length) { jtShowStatus('Belum ada project dari negara "' + q + '". 💛'); }
+        else list.forEach((ev, i) => box.appendChild(jtBuildEvent(ev, i)));
+        jtRefreshGallery();
+    }
+
     async function jtLoadEvents() {
         const box = document.getElementById('jt-events');
         if (!isUrl(SHEET_CSV_URL)) {
@@ -467,8 +512,8 @@
                 .filter(ev => ev.title && ev.year === EVENT_YEAR && !/^(no|tidak|hide|0|false)$/i.test(ev.show || ''));
             box.innerHTML = '';
             if (!events.length) { jtShowStatus('Belum ada event ' + EVENT_YEAR + '. Stay tuned! 💛'); return; }
-            events.forEach((ev, i) => box.appendChild(jtBuildEvent(ev, i)));
-            jtRefreshGallery();
+            jtAllEvents = events;
+            jtRender();
         } catch (err) {
             console.error('[Jimtober] gagal ambil sheet:', err);
             jtShowStatus('Event gagal dimuat. Coba refresh halaman ini ya.');
@@ -483,6 +528,13 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('jt-year').textContent = EVENT_YEAR;
+        const sInput = document.getElementById('jt-search');
+        const sClear = document.getElementById('jt-search-clear');
+        sInput.addEventListener('input', () => {
+            sClear.classList.toggle('show', sInput.value !== '');
+            jtRender();
+        });
+        sClear.addEventListener('click', () => { sInput.value = ''; sClear.classList.remove('show'); jtRender(); sInput.focus(); });
         jtRefreshGallery();   // foto card vote langsung bisa dibuka walau sheet belum kebaca
         jtLoadEvents();
     });
