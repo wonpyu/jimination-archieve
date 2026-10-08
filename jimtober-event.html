@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,11 +20,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="jimtober-event.css">
 <style>
-    /* hapus garis kuning di atas card vote + kasih jarak dari event terakhir */
+    /* remove the yellow line on top of the vote card + add spacing from the last event */
     .vote-card { border-top: none !important; margin-top: 48px; }
     .vote-card::before, .vote-card::after { display: none !important; }
 
-    /* jumlah project + pencarian negara */
+    /* project count + country search */
     .jt-total { margin: 14px 0 0; font-family: 'Fredoka','Quicksand',sans-serif; font-weight: 600; font-size: 1.05rem; color: #7a5a3a; text-align: center; }
     .jt-total strong { color: #e0a800; font-size: 1.25em; }
     .jt-search { position: relative; max-width: 420px; margin: 16px auto 36px; padding: 0 16px; box-sizing: border-box; }
@@ -40,7 +40,7 @@
 
 <body>
 
-<a href="https://jimination.com/navigation/vault/archives#jimtober-in-latin-america-the-whole-world" class="back-btn-fixed" aria-label="Kembali ke Jimination">&#8592; Jimination</a>
+<a href="https://jimination.com/navigation/vault/archives#jimtober-in-latin-america-the-whole-world" class="back-btn-fixed" aria-label="Back to Jimination">&#8592; Jimination</a>
 
 <div class="jimtober-page">
 
@@ -55,20 +55,20 @@
         <p class="jt-total" id="jt-total"></p>
     </header>
 
-    <!-- PENCARIAN NEGARA -->
+    <!-- COUNTRY SEARCH -->
     <div class="jt-search">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="search" id="jt-search" placeholder="Search Country… (ex. South Korea)" autocomplete="off" aria-label="Cari negara">
-        <button type="button" class="jt-search-clear" id="jt-search-clear" aria-label="Hapus pencarian">&#10005;</button>
+        <input type="search" id="jt-search" placeholder="Search Country… (ex. South Korea)" autocomplete="off" aria-label="Search country">
+        <button type="button" class="jt-search-clear" id="jt-search-clear" aria-label="Clear search">&#10005;</button>
     </div>
 
 
-    <!-- EVENT (update dari Google Sheet) -->
+    <!-- EVENTS (updated from Google Sheet) -->
     <div id="jt-events">
         <p class="jt-status">Loading events… 💛</p>
     </div>
 
-    <!-- CARD SPESIAL VOTING (di bawah event) -->
+    <!-- SPECIAL VOTING CARD (below the events) -->
     <section class="event-entry vote-card">
         <span class="vote-badge">✨ Special Thanks</span>
         <h2 class="event-heading">Jimin Birthday Vote Team</h2>
@@ -88,7 +88,7 @@
             </a>
         </div>
 
-        <!-- DAFTAR HASIL VOTE-->
+        <!-- VOTE RESULTS LIST -->
         <div class="vote-grid">
             <div class="vote-item">
                 <a class="vote-title" href="https://x.com/itJIMINvote/status/2104754885225054426" target="_blank" rel="noopener">KOOKY October Birthday Vote · 23th Win</a>
@@ -188,23 +188,23 @@
 
 </div>
 
-<!-- LIGHTBOX (popup foto gede)  -->
+<!-- LIGHTBOX (large photo popup) -->
 <div class="lightbox" id="jt-lightbox">
     <div class="lightbox-figure" id="jt-lightbox-figure">
-        <button class="lightbox-nav lightbox-prev" onclick="jtPrevImage(event)" aria-label="Sebelumnya">&#10094;</button>
+        <button class="lightbox-nav lightbox-prev" onclick="jtPrevImage(event)" aria-label="Previous">&#10094;</button>
         <img class="lightbox-img show" id="jt-lightbox-img" src="" alt="">
-        <button class="lightbox-nav lightbox-next" onclick="jtNextImage(event)" aria-label="Berikutnya">&#10095;</button>
-        <button class="lightbox-close" onclick="closeJtLightbox()" aria-label="Tutup">&#10005;</button>
+        <button class="lightbox-nav lightbox-next" onclick="jtNextImage(event)" aria-label="Next">&#10095;</button>
+        <button class="lightbox-close" onclick="closeJtLightbox()" aria-label="Close">&#10005;</button>
         <div class="lightbox-counter" id="jt-lightbox-counter"></div>
     </div>
 </div>
 
-<!-- LIGHTBOX VIDEO (popup video gede)-->
+<!-- VIDEO LIGHTBOX (large video popup) -->
 <div class="lightbox" id="jt-video-lightbox">
     <div class="lightbox-figure" id="jt-video-lightbox-figure">
         <video class="lightbox-video" id="jt-video-lightbox-video" controls playsinline></video>
-        <p class="lightbox-video-empty" id="jt-video-lightbox-empty">Video belum tersedia.</p>
-        <button class="lightbox-close" onclick="closeJtVideoLightbox()" aria-label="Tutup">&#10005;</button>
+        <p class="lightbox-video-empty" id="jt-video-lightbox-empty">Video not available yet.</p>
+        <button class="lightbox-close" onclick="closeJtVideoLightbox()" aria-label="Close">&#10005;</button>
     </div>
 </div>
 
@@ -213,7 +213,7 @@
     let jtGalleryImages = [];
     let jtCurrentIndex = 0;
 
-    // daftar foto buat lightbox dibangun ulang tiap selesai render dari sheet
+    // the photo list for the lightbox is rebuilt every time the sheet finishes rendering
     function jtRefreshGallery() {
         const imgs = document.querySelectorAll('.vote-photo, .pile-photo, img.poster-img-slot');
         jtGalleryImages = Array.from(imgs).map(img => img.src);
@@ -273,12 +273,12 @@
         const lightbox = document.getElementById('jt-lightbox');
         if (!lightbox) return;
 
-        // Klik area gelap di luar foto buat nutup
+        // Click the dark area outside the photo to close
         lightbox.addEventListener('click', function (e) {
             if (e.target === lightbox) closeJtLightbox();
         });
 
-        // Swipe jari (touch) buat geser foto di HP
+        // Finger swipe (touch) to move between photos on phones
         let startX = 0;
         lightbox.addEventListener('touchstart', function (e) {
             startX = e.touches[0].clientX;
@@ -332,22 +332,22 @@
         const lightbox = document.getElementById('jt-video-lightbox');
         if (!lightbox) return;
 
-        // Klik area gelap di luar video buat nutup
+        // Click the dark area outside the video to close
         lightbox.addEventListener('click', function (e) {
             if (e.target === lightbox) closeJtVideoLightbox();
         });
     });
 
-    /* KONTEN DARI GOOGLE SHEET */
+    /* CONTENT FROM GOOGLE SHEET */
     const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQQcQifp48bDdfVCLEmPw4RC1xRrwDDcP5eCX1_12_RGFUre40qsyRSk7dGXYSAOVlr0G0r-BEFRAUD/pub?output=csv';
 
-    // Halaman ini cuma nampilin baris yang kolom "year"-nya sama dengan ini.
-    // Buat halaman tahun depan: copy file ini, ganti jadi '2027' (plus judul di atas).
+    // This page only shows rows whose "year" column matches this value.
+    // For next year's page: copy this file and change it to '2027' (plus the title above).
     const EVENT_YEAR = '2026';
 
     const MAX_PILE_PHOTOS = 7;
 
-    // Parser CSV kecil (aman buat koma, tanda kutip, dan Enter di dalam sel)
+    // Small CSV parser (safe for commas, quotation marks, and line breaks inside cells)
     function jtParseCSV(text) {
         const rows = [];
         let row = [], field = '', inQuotes = false;
@@ -374,7 +374,7 @@
             .map(r => Object.fromEntries(headers.map((h, i) => [h, (r[i] || '').trim()])));
     }
 
-    // helper bikin elemen
+    // helper to create elements
     function el(tag, className, text) {
         const e = document.createElement(tag);
         if (className) e.className = className;
@@ -382,19 +382,19 @@
         return e;
     }
     const isUrl = u => /^https?:\/\//i.test(u || '');
-    // pindah baris: Enter di dalam sel ATAU tulis  ||  sebagai pemisah
+    // line break: Enter inside a cell OR write  ||  as a separator
     const lines = v => (v || '').split(/\r?\n|\s*\|\|\s*/).map(s => s.trim()).filter(Boolean);
 
     function jtBuildEvent(ev, index) {
         const side = (ev.poster_side || '').toLowerCase();
         const posterLeft = side === 'left' || side === 'kiri' ? true
                          : side === 'right' || side === 'kanan' ? false
-                         : index % 2 === 1;   // kosong = selang-seling otomatis
+                         : index % 2 === 1;   // empty = automatically alternates
 
         const section = el('section', 'event-entry' + (posterLeft ? ' reverse' : ''));
         section.appendChild(el('h2', 'event-heading', ev.title));
 
-        /* ---- baris poster + teks ---- */
+        /* ---- poster + text row ---- */
         const row = el('div', 'event-row');
         const text = el('div', 'event-text');
         if (ev.country) {
@@ -423,12 +423,12 @@
             img.addEventListener('click', () => openJtLightbox(img.src));
             posterBox.appendChild(img);
         } else {
-            posterBox.appendChild(el('div', 'poster-img-slot', 'Poster belum ada'));
+            posterBox.appendChild(el('div', 'poster-img-slot', 'Poster not available yet'));
         }
         if (posterLeft) { row.append(posterBox, text); } else { row.append(text, posterBox); }
         section.appendChild(row);
 
-        /* ---- foto bertumpuk + deskripsi ---- */
+        /* ---- stacked photos + description ---- */
         const photos = lines(ev.photos).flatMap(l => l.split(/\s*[,;]\s*/)).filter(isUrl).slice(0, MAX_PILE_PHOTOS);
         if (photos.length || ev.collage_desc) {
             const collage = el('div', 'event-collage-row' + (photos.length ? '' : ' no-photos'));
@@ -440,7 +440,7 @@
                 const pile = el('div', 'collage-photos photo-pile');
                 photos.forEach((url, i) => {
                     const img = el('img', 'pile-photo');
-                    img.src = url; img.alt = 'Foto ' + (i + 1); img.loading = 'lazy';
+                    img.src = url; img.alt = 'Photo ' + (i + 1); img.loading = 'lazy';
                     img.addEventListener('click', () => openJtLightbox(img.src));
                     pile.appendChild(img);
                 });
@@ -481,7 +481,7 @@
 
     let jtAllEvents = [];
 
-    // render ulang daftar event sesuai kata kunci negara (kosong = tampilkan semua)
+    // re-render the event list based on the country keyword (empty = show all)
     function jtRender() {
         const box = document.getElementById('jt-events');
         const q = document.getElementById('jt-search').value.trim().toLowerCase();
@@ -489,11 +489,11 @@
 
         const total = document.getElementById('jt-total');
         total.innerHTML = q
-            ? 'Menampilkan <strong>' + list.length + '</strong> dari ' + jtAllEvents.length + ' projects'
+            ? 'Showing <strong>' + list.length + '</strong> of ' + jtAllEvents.length + ' projects'
             : '<strong>' + jtAllEvents.length + '</strong> Projects';
 
         box.innerHTML = '';
-        if (!list.length) { jtShowStatus('Belum ada project dari negara "' + q + '". 💛'); }
+        if (!list.length) { jtShowStatus('No projects from "' + q + '" yet. 💛'); }
         else list.forEach((ev, i) => box.appendChild(jtBuildEvent(ev, i)));
         jtRefreshGallery();
     }
@@ -501,7 +501,7 @@
     async function jtLoadEvents() {
         const box = document.getElementById('jt-events');
         if (!isUrl(SHEET_CSV_URL)) {
-            jtShowStatus('Link Google Sheet (CSV) belum diisi di SHEET_CSV_URL.');
+            jtShowStatus('The Google Sheet (CSV) link has not been set in SHEET_CSV_URL.');
             return;
         }
         try {
@@ -511,16 +511,16 @@
             const events = jtParseCSV(await res.text())
                 .filter(ev => ev.title && ev.year === EVENT_YEAR && !/^(no|tidak|hide|0|false)$/i.test(ev.show || ''));
             box.innerHTML = '';
-            if (!events.length) { jtShowStatus('Belum ada event ' + EVENT_YEAR + '. Stay tuned! 💛'); return; }
+            if (!events.length) { jtShowStatus('No events for ' + EVENT_YEAR + ' yet. Stay tuned! 💛'); return; }
             jtAllEvents = events;
             jtRender();
         } catch (err) {
-            console.error('[Jimtober] gagal ambil sheet:', err);
-            jtShowStatus('Event gagal dimuat. Coba refresh halaman ini ya.');
+            console.error('[Jimtober] failed to fetch sheet:', err);
+            jtShowStatus('Failed to load events. Please try refreshing this page.');
             const box = document.getElementById('jt-events');
             const detail = el('p', 'jt-status jt-status-detail',
                 location.protocol === 'file:'
-                    ? '(Halaman dibuka langsung dari komputer — coba buka lewat website atau Live Server.)'
+                    ? '(The page was opened directly from your computer — try opening it through a website or Live Server.)'
                     : '(' + err.message + ')');
             box.appendChild(detail);
         }
@@ -535,7 +535,7 @@
             jtRender();
         });
         sClear.addEventListener('click', () => { sInput.value = ''; sClear.classList.remove('show'); jtRender(); sInput.focus(); });
-        jtRefreshGallery();   // foto card vote langsung bisa dibuka walau sheet belum kebaca
+        jtRefreshGallery();   // vote card photos can be opened right away even if the sheet hasn't loaded
         jtLoadEvents();
     });
 </script>
